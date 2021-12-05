@@ -11,7 +11,7 @@ module.exports = async function(deployer, network, accounts) {
     } else if (network == "fantomTestnet") {
         walletAddress = "0xf469818b50D0d7aFC2dd29050a3d5dc87C645438";
         cybarAddress = "0x5500f1D0993A666f5CD9dCE434762309Df257A9f";
-        await deployer.deploy(Dummy);
+        await deployer.deploy(Dummy, 1000000000, "Dummy", "DMY");
         const dummy = await Dummy.deployed();
         await deployer.deploy(ERC20, 1000000000);
         const wftm = await ERC20.deployed();
