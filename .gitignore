@@ -1,2 +1,7 @@
 node_modules/
 build/
+*.org
+yarn.lock
+yarn-error.log
+mnemonic
+.secret
