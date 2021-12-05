@@ -6,8 +6,8 @@ import './libraries/SafeMath.sol';
 contract DummyToken is ICybarERC20 {
     using SafeMath for uint256;
 
-    string public constant name;
-    string public constant symbol;
+    string public name;
+    string public symbol;
     uint8 public constant decimals = 18;
     uint256 public totalSupply;
     mapping(address => uint256) public balanceOf;
@@ -21,7 +21,7 @@ contract DummyToken is ICybarERC20 {
     event Approval(address indexed owner, address indexed spender, uint256 value);
     event Transfer(address indexed from, address indexed to, uint256 value);
 
-    constructor(uint256 _initialSupply, string _name, string _symbol) public {
+    constructor(uint256 _initialSupply, string memory _name, string memory _symbol) public {
         name = _name;
         symbol = _symbol;
         uint256 chainId;
