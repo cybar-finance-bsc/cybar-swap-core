@@ -7,7 +7,7 @@ import './interfaces/ICybarPair.sol';
 
 import './libraries/SafeMath.sol';
 
-contract Treasury is ITreasury {
+contract CybarTreasury is ICybarTreasury {
     using SafeMath for uint;
 
     address public cybarToken;
