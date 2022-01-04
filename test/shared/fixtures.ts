@@ -45,6 +45,17 @@ export async function pairFixture(provider: Web3Provider, [wallet]: Wallet[]): P
   return { factory, token0, token1, pair }
 }
 
+interface TreasuryFixture {
+    treasury: Contract
+    factory: Contract
+    cybarToken: Contract
+    token0: Contract
+    token1: Contract
+    pair0: Contract
+    pair1: Contract
+    pair2: Contract
+}
+
 export async function treasuryFixture(provider: Web3Provider, [wallet, lottery]: Wallet[]): Promise<TreasuryFixture> {
     
     const { factory } = await factoryFixture(provider, [wallet])
@@ -63,15 +74,15 @@ export async function treasuryFixture(provider: Web3Provider, [wallet, lottery]:
     const pair1 = new Contract(pairAddress1, JSON.stringify(CybarPair.abi), provider).connect(wallet)
     const pair2 = new Contract(pairAddress2, JSON.stringify(CybarPair.abi), provider).connect(wallet)
 
-    const token0Address = (await pair.token0()).address
+    const token0Address = (await pair2.token0()).address
     const token0 = tokenA.address === token0Address ? tokenA : tokenB
     const token1 = tokenA.address === token0Address ? tokenB : tokenA
+    
+    const treasury = await deployContract(wallet, CybarTreasury, [factory.address, cybarToken.address, lottery.address], overrides)
 
-    const treasury = await deployContract(wallet, CybarTreasury, [factory, cybarToken, lottery], overrides)
-
-    await treasury.addLPToken(pair0)
-    await treasury.addLPToken(pair1)
-    await treasury.addLPToken(pair2)
+    await treasury.addLPToken(pair0.address)
+    await treasury.addLPToken(pair1.address)
+    await treasury.addLPToken(pair2.address)
 
     return { treasury, factory, cybarToken, token0, token1, pair0, pair1, pair2 }
 }
