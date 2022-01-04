@@ -57,4 +57,10 @@ describe('CybarTreasury', () => {
         expect(await treasury.checkLPToken(token0.address)).to.eq(false)
         expect(await treasury.checkLPToken(token1.address)).to.eq(false)
     })
+
+    it('Access tests', async () => {
+        expect(treasury.connect(other).transferOwnership(other.address)).to.revertedWith("Treasury: Can only be called by owner")
+        expect(treasury.connect(other).setLottery(other.address)).to.revertedWith("Treasury: Can only be called by owner")
+
+    })
 })
