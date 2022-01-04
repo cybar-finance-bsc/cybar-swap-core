@@ -1,6 +1,6 @@
 pragma solidity = 0.5.16;
 
-import './interfaces/ITreasury.sol';
+import './interfaces/ICybarTreasury.sol';
 import './interfaces/ICybarERC20.sol';
 import './interfaces/ICybarFactory.sol';
 import './interfaces/ICybarPair.sol';
