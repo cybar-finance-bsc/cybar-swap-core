@@ -1,5 +1,6 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 const fs = require('fs');
+const web3 = require('web3');
 const mnemonic = fs.readFileSync("mnemonic").toString().trim();
 
 module.exports = {
@@ -8,6 +9,11 @@ module.exports = {
          host: "127.0.0.1",
          port: 8545,
          network_id: "*"
+      },
+      localDeployment: {
+          host: "127.0.0.1",
+          port: 7545,
+          network_id: "*"
       },
       testnet: {
           provider: () => new HDWalletProvider(mnemonic, `https://data-seed-prebsc-1-s1.binance.org:8545`),
