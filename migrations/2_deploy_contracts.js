@@ -14,6 +14,7 @@ module.exports = async function(deployer, network, accounts) {
         await deployer.deploy(CybarFactory, walletAddress);
         const cybarFactory = await CybarFactory.deployed();
         const init_code = await cybarFactory.INIT_CODE_PAIR_HASH();
+        console.log("INIT_CODE_PAIR_HASH:");
         console.log(init_code);
     } else if (network == "fantomTestnet") {
         walletAddress = "0xf469818b50D0d7aFC2dd29050a3d5dc87C645438";
@@ -35,6 +36,7 @@ module.exports = async function(deployer, network, accounts) {
         await deployer.deploy(CybarFactory, walletAddress);
         const cybarFactory = await CybarFactory.deployed();
         const init_code = await cybarFactory.INIT_CODE_PAIR_HASH();
+        console.log("INIT_CODE_PAIR_HASH:");
         console.log(init_code);
     }
 };
